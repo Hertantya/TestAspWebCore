@@ -1,0 +1,53 @@
+﻿@model IEnumerable<AspNetCoreWebMVC.Models.Employee>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="AddOrEdit" class="btn btn-primary">Create New</a>
+</p>
+@if (Model == null || !Model.Any())
+{
+    <p>No data available.</p>
+}
+else
+{
+    <table id="employeeTable" class="display table table-striped table-hover table-bordered dt-responsive text-nowrap">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Address</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Age</td>
+                    <td>@item.Address</td>
+                    <td>
+                        <a asp-action="AddorEdit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+}
+<a asp-action="ExportToExcel" class="btn btn-primary">Export to Excel</a>
+<a asp-action="ExportToPdf" class="btn btn-primary">Export to PDF</a>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#employeeTable').DataTable();
+        });
+    </script>
+}

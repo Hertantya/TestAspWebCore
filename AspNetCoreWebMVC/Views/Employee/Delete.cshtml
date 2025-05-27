@@ -1,0 +1,10 @@
+﻿@model AspNetCoreWebMVC.Models.Employee
+
+<h2>Delete Confirmation</h2>
+<p>Are you sure you want to delete @Model.Name?</p>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Delete" class="btn btn-danger" />
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
