@@ -67,7 +67,7 @@ namespace AspNetCoreWebMVC.Controllers
                     workbook.SaveAs(stream);
                     stream.Position = 0;
 
-                    string fileName = $"Employees_{DateTime.Now:yyyyMMddHHmmss}.xlsx";
+                    string fileName = $"Employees.xlsx";
                     return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
                 }
             }
